@@ -7,15 +7,15 @@ const FRASES = [
 
 const getAnswer = async (content) => {
   try {
-    // const response = await openai.createCompletion({
-    //   model: "ada",
-    //   prompt: [content],
-    //   suffix: "Num sei",
-    // });
+    const response = await openai.createCompletion({
+      model: "ada",
+      prompt: [content],
+      suffix: "Num sei",
+    });
 
     return FRASES[Math.floor(Math.random() * FRASES.length)].replace(
       "$answer",
-      content.trim()
+      response.data
     );
   } catch (error) {
     console.log(`Error fetching answer: ${error.message}`);
